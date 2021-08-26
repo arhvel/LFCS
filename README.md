@@ -6,3 +6,5 @@
          2. Provision of unique patterns relative and absolute support.          
          3. Provision of unique patterns Super-sequence indexes.          
          4. Exploration and sorting of identified patterns
+         
+         The LFCS framework is implemented as an app for Streamlit.io
