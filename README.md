@@ -7,4 +7,10 @@
          3. Provision of unique patterns Super-sequence indexes.          
          4. Exploration and sorting of identified patterns
          
-         The LFCS framework is implemented as an app for Streamlit.io
+         This LFCS framework is implemented as an app for Streamlit.io
+         
+         [Click here to launch the app](https://share.streamlit.io/arhvel/lfcs/main/LFCSstreamlit.py)
+         
+         ### It requires your two column data (i.e. Index and Sequence columns only).
+         
+         Thank you.
