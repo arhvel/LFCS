@@ -9,7 +9,7 @@
          
          This LFCS framework is implemented as an app for Streamlit.io
          
-         [Click here to launch the app](https://share.streamlit.io/arhvel/lfcs/main/LFCSstreamlit.py)
+         [Click here to launch the app] (https://share.streamlit.io/arhvel/lfcs/main/LFCSstreamlit.py)
          
          ### It requires your two column data (i.e. Index and Sequence columns only).
          
