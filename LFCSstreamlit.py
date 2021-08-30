@@ -15,15 +15,11 @@ from io import BytesIO
 
 def to_excel(df):
     output = BytesIO()
-    writer = pd.ExcelWriter(output, engine='xlsxwriter')
+    writer = pd.ExcelWriter(output)
     df.to_excel(writer, sheet_name='lCFS', index = False)
     writer.save()
     processed_data = output.getvalue()
     return processed_data
-
-def to_csv(df,fname):
-        
-    return df.to_csv(fname, index = False)
 
 def get_table_download_link(df, fname):
     """Generates a link allowing the data in a given panda dataframe to be downloaded
@@ -81,7 +77,7 @@ if uploaded_file is not None:
         namee = str(maxlength) + '_'+str(startpos)+'-LFCS_' + uploadname
         
         ResultDataFrame = pd.DataFrame()
-        layout = st.beta_expander('Generated Patterns Panel', expanded=True)
+        layout = st.expander('Generated Patterns Panel', expanded=True)
             
         with layout:
             st.write('### Step 3:')
@@ -134,7 +130,7 @@ if uploaded_file is not None:
         namee = str(maxlength) + '-LFCS_' + uploadname
             
         ResultDataFrame = pd.DataFrame()
-        layout = st.beta_expander('Generated Patterns Panel', expanded=True)
+        layout = st.expander('Generated Patterns Panel', expanded=True)
         
         with layout:
             st.write('### Step 3:')
