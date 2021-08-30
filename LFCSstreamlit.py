@@ -13,25 +13,6 @@ import base64
 
 from io import BytesIO
 
-def to_excel(df):
-    output = BytesIO()
-    writer = pd.ExcelWriter(output)
-    df.to_excel(writer, sheet_name='lCFS', index = False)
-    writer.save()
-    processed_data = output.getvalue()
-    return processed_data
-
-def get_table_download_link(df, fname):
-    """Generates a link allowing the data in a given panda dataframe to be downloaded
-    in:  dataframe
-    out: href string
-    """
-    val = to_excel(df)
-    b64 = base64.b64encode(val)  # val looks like b'...'
-    return f'<a href="data:application/octet-stream;base64,{b64.decode()}" download={fname}>Download csv file</a>' 
-
-
-
 ResultDataFrame = pd.DataFrame()
 
 filename = None
@@ -114,16 +95,16 @@ if uploaded_file is not None:
                     
             
                         
-                #st.write("Styling your output to fix the container below")
-                #styled = SortedCrosstab.style.set_table_styles([dict(selector='th', props=[('text-align', 'center')])])
-                #st.dataframe(styled.set_properties(**{'text-align': 'center'}).hide_index())
+                st.write("Styling your output to fix the container below")
+                styled = SortedCrosstab.style.set_table_styles([dict(selector='th', props=[('text-align', 'center')])])
+                st.dataframe(styled.set_properties(**{'text-align': 'center'}).hide_index())
                     
                 st.write('### Step 4:')
                 st.write('#### Click the link below to download ' + filename)
 
                 csv = ResultDataFrame.to_csv(index=False)
                 b64 = base64.b64encode(csv.encode()).decode()
-                download = f'<a href="data:file/csv;base64,{b64}" download=namee>Download csv file</a>'
+                download = f'<a href="data:file/csv;base64,{b64}" download={namee}>Download csv file</a>'
                 st.markdown(download,unsafe_allow_html=True)
                 
 
@@ -173,15 +154,15 @@ if uploaded_file is not None:
                     
             
                         
-                #st.write("Styling your output to fix the container below")
-                #styled = SortedCrosstab.style.set_table_styles([dict(selector='th', props=[('text-align', 'center')])])
-                #st.dataframe(styled.set_properties(**{'text-align': 'center'}).hide_index())
+                st.write("Styling your output to fix the container below")
+                styled = SortedCrosstab.style.set_table_styles([dict(selector='th', props=[('text-align', 'center')])])
+                st.dataframe(styled.set_properties(**{'text-align': 'center'}).hide_index())
                     
                 st.write('### Step 4:')
                 st.write('#### Click the link below to download ' + filename)
                 csv = ResultDataFrame.to_csv(index=False)
                 b64 = base64.b64encode(csv.encode()).decode()
-                download = f'<a href="data:file/csv;base64,{b64}" download=namee>Download csv file</a>'
+                download = f'<a href="data:file/csv;base64,{b64}" download={namee}>Download csv file</a>'
                 st.markdown(download,unsafe_allow_html=True)
 
 else:
