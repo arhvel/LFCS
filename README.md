@@ -11,8 +11,6 @@
          
          [Click here to launch the app] (https://share.streamlit.io/arhvel/lfcs/main/LFCSstreamlit.py)
          
-         ### It requires your two column data (i.e. Index and Sequence columns only).
-         
-         Or leave it empty and use the [https://share.streamlit.io/arhvel/lfcs/main/LFCSstreamlit.py]
+         ### It requires your two column data (i.e. Index and Sequence columns only). See the sampleData.csv example.
          
          Thank you.
