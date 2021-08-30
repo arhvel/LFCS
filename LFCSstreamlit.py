@@ -28,10 +28,8 @@ def get_table_download_link(df, fname):
     """
     val = to_excel(df)
     b64 = base64.b64encode(val)  # val looks like b'...'
-    return f'<a href="data:application/octet-stream;base64,{b64.decode()}" download={fname}>Download csv file</a>' # decode b'abc' => abc
+    return f'<a href="data:application/octet-stream;base64,{b64.decode()}" download={fname}>Download csv file</a>' 
 
-#df = ... # your dataframe
-#st.markdown(get_table_download_link(df), unsafe_allow_html=True)
 
 
 ResultDataFrame = pd.DataFrame()
@@ -122,8 +120,14 @@ if uploaded_file is not None:
                     
                 st.write('### Step 4:')
                 st.write('#### Click the link below to download ' + filename)
-                st.markdown(get_table_download_link(ResultDataFrame, namee), unsafe_allow_html=True)
-                st.write('change the downloaded file extension to .xlsx ')
+
+                csv = ResultDataFrame.to_csv(index=False)
+                b64 = base64.b64encode(csv.encode()).decode()
+                download = f'<a href="data:file/csv;base64,{b64}" download=namee>Download csv file</a>'
+                st.markdown(download,unsafe_allow_html=True)
+                
+
+
     else:    
         name = str(maxlength) + '-LFC patterns obtained from ' + uploadname
         filename = name
@@ -175,8 +179,11 @@ if uploaded_file is not None:
                     
                 st.write('### Step 4:')
                 st.write('#### Click the link below to download ' + filename)
-                st.markdown(get_table_download_link(ResultDataFrame, namee), unsafe_allow_html=True)
-                st.write('change the downloaded file extension to .xlsx ')
+                csv = ResultDataFrame.to_csv(index=False)
+                b64 = base64.b64encode(csv.encode()).decode()
+                download = f'<a href="data:file/csv;base64,{b64}" download=namee>Download csv file</a>'
+                st.markdown(download,unsafe_allow_html=True)
+
 else:
     st.warning("Please upload your csv file")
 
