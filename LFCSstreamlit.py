@@ -94,7 +94,7 @@ if uploaded_file is not None:
                 st.write("Analysis Completed ...")
                     
                 st.write("Styling your output to fit the container below")
-                styled = SortedCrosstab.style.set_properties(**{'text-align': 'center'}).hide_index()
+                styled = SortedCrosstab.style.set_properties(**{'text-align': 'center'})
                 st.dataframe(styled)
                     
                 st.write('### Step 4:')
@@ -151,7 +151,7 @@ if uploaded_file is not None:
                 st.write("Analysis Completed ...")
                     
                 st.write("Styling your output to fit the container below")
-                styled = SortedCrosstab.style.set_properties(**{'text-align': 'center'}).hide_index()
+                styled = SortedCrosstab.style.set_properties(**{'text-align': 'center'})
                 st.dataframe(styled)
                     
                 st.write('### Step 4:')
