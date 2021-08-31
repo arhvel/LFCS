@@ -10,7 +10,7 @@ from LFCS import LFCS1P
 import streamlit as st
 import pandas as pd
 import base64
-from time import perf_counter
+#from time import perf_counter
 
 from io import BytesIO
 
