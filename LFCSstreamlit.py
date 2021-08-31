@@ -47,7 +47,7 @@ if uploaded_file is not None:
         namee = str(maxlength) + '_'+str(startpos)+'-LFCS_' + uploadname
         
         ResultDataFrame = pd.DataFrame()
-        layout = st.beta_expander('Generated Patterns Panel', expanded=True)
+        layout = st.expander('Generated Patterns Panel', expanded=True)
             
         with layout:
             st.write('### Step 3:')
@@ -100,7 +100,7 @@ if uploaded_file is not None:
         namee = str(maxlength) + '-LFCS_' + uploadname
             
         ResultDataFrame = pd.DataFrame()
-        layout = st.beta_expander('Generated Patterns Panel', expanded=True)
+        layout = st.expander('Generated Patterns Panel', expanded=True)
         
         with layout:
             st.write('### Step 3:')
