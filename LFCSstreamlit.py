@@ -10,6 +10,7 @@ from LFCS import LFCS1P
 import streamlit as st
 import pandas as pd
 import base64
+from time import perf_counter
 
 from io import BytesIO
 
@@ -61,12 +62,17 @@ if uploaded_file is not None:
         with layout:
             st.write('### Step 3:')
             if st.button(label='Run LFCS'):
+                timer_start = perf_counter()
                 LFCSitems, LFCSitemsAppearances = explorer.i_lfcs(maxlength,startpos)
-                
-                st.write("Mining Completed! Processing unique patterns.")
+                timer_end = perf_counter()
+                st.write("LFCS Analysis Completed!")
+                timer = timer_end - timer_start
+                timer_display = "Analysis Duration: " + str(timer) + "secs."
+                st.write(timer_display)                     
 
         
                 # ### Secondary Operation
+                st.write("Processing the patterns into Data Frame of uniqe contiguous items.")
                 frame = pd.DataFrame(LFCSitems, columns = ['Patterns','SuperSequences','Absolute Support', 'Relative Support %'])
                 frame1 = pd.DataFrame(LFCSitemsAppearances, columns=['Patterns','SuperSequences','Appearance'])
                 frame['Appearance'] = frame1['Appearance'].copy()
@@ -81,21 +87,16 @@ if uploaded_file is not None:
 
 
                 frame['SuperSequences'] = pd.DataFrame(rearranged,columns = ['Supersequences']) 
-               
-                #print last twenty uniqe consecutive items
-                st.write("Processing your Data Frame of uniqe contiguous items....")
-                     
+   
                 SortedCrosstab = frame.copy()
                         
                 SortedCrosstab = SortedCrosstab.sort_values('Absolute Support', ascending=False)
                 
                 SortedCrosstab = SortedCrosstab.reset_index(drop=True)
                 ResultDataFrame = SortedCrosstab.copy()
-                st.write("Analysis Completed ...")
+                st.write("Processing Completed.")
                     
-                st.write("Styling your output to fit the container below")
-                styled = SortedCrosstab.style.set_properties(**{'text-align': 'center'})
-                st.dataframe(styled)
+                st.dataframe(SortedCrosstab)
                     
                 st.write('### Step 4:')
                 st.write('#### Click the link below to download ' + filename)
@@ -118,12 +119,17 @@ if uploaded_file is not None:
         with layout:
             st.write('### Step 3:')
             if st.button(label='Run LFCS'):
-                LFCSitems, LFCSitemsAppearances = explorer.lfcs(maxlength)
-                
-                st.write("Mining Completed! Processing unique patterns.")
+                timer_start = perf_counter()
+                LFCSitems, LFCSitemsAppearances = explorer.i_lfcs(maxlength,startpos)
+                timer_end = perf_counter()
+                st.write("LFCS Analysis Completed!")
+                timer = timer_end - timer_start
+                timer_display = "Analysis Duration: " + str(timer) + "secs."
+                st.write(timer_display)                     
 
         
                 # ### Secondary Operation
+                st.write("Processing the patterns into Data Frame of uniqe contiguous items.")
                 frame = pd.DataFrame(LFCSitems, columns = ['Patterns','SuperSequences','Absolute Support', 'Relative Support %'])
                 frame1 = pd.DataFrame(LFCSitemsAppearances, columns=['Patterns','SuperSequences','Appearance'])
                 frame['Appearance'] = frame1['Appearance'].copy()
@@ -138,9 +144,6 @@ if uploaded_file is not None:
 
 
                 frame['SuperSequences'] = pd.DataFrame(rearranged,columns = ['Supersequences']) 
-               
-                #print last twenty uniqe consecutive items
-                st.write("Processing your Data Frame of uniqe contiguous items....")
                      
                 SortedCrosstab = frame.copy()
                         
@@ -148,11 +151,9 @@ if uploaded_file is not None:
                 
                 SortedCrosstab = SortedCrosstab.reset_index(drop=True)
                 ResultDataFrame = SortedCrosstab.copy()
-                st.write("Analysis Completed ...")
-                    
-                st.write("Styling your output to fit the container below")
-                styled = SortedCrosstab.style.set_properties(**{'text-align': 'center'})
-                st.dataframe(styled)
+                st.write("Processing Completed.")
+
+                st.dataframe(SortedCrosstab)
                     
                 st.write('### Step 4:')
                 st.write('#### Click the link below to download ' + filename)
