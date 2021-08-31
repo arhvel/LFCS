@@ -1,22 +1,15 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Aug 25 18:28:34 2021
-
 @author: adeyem01
 """
-
-
 from LFCS import LFCS1P
 import streamlit as st
 import pandas as pd
 import base64
-
 from io import BytesIO
-
 ResultDataFrame = pd.DataFrame()
-
 filename = None
-
 st.write("""
          
          # This is the l-Length Contiguous Frequent Subsequence (i.e., LCFS) Explorer.
@@ -29,15 +22,11 @@ st.write("""
          
          
          """)
-
-
 explorer = LFCS1P('Explorer1')
 st.write('### A LFCS instance is running.')
     
 st.write(' ### Step 2: Do upload a two-columned csv file i.e. Index and Sequences')
 uploaded_file = st.file_uploader("Upload your csv file")
-
-
 if uploaded_file is not None:
     st.text('Loading data...')
     explorer.Data(uploaded_file)
@@ -62,45 +51,47 @@ if uploaded_file is not None:
             st.write('### Step 3:')
             if st.button(label='Run LFCS'):
                 LFCSitems, LFCSitemsAppearances = explorer.i_lfcs(maxlength,startpos)
-                st.write("LFCS Analysis Completed!")
-                  
+                
+                st.write("Mining Completed! Processing unique patterns.")
+        
                 # ### Secondary Operation
-                st.write("Processing the patterns into Data Frame of uniqe contiguous items.")
                 frame = pd.DataFrame(LFCSitems, columns = ['Patterns','SuperSequences','Absolute Support', 'Relative Support %'])
                 frame1 = pd.DataFrame(LFCSitemsAppearances, columns=['Patterns','SuperSequences','Appearance'])
                 frame['Appearance'] = frame1['Appearance'].copy()
                 
                 arrangement  = frame['SuperSequences']
-
                 rearranged =[]
                 for app in arrangement:
                     converted = [item for t in app for item in t]
                     converted.sort()
                     rearranged.append(str(converted))
-
-
                 frame['SuperSequences'] = pd.DataFrame(rearranged,columns = ['Supersequences']) 
-   
+               
+                #print last twenty uniqe consecutive items
+                st.write("Processing your Data Frame of uniqe contiguous items....")
+                     
                 SortedCrosstab = frame.copy()
                         
                 SortedCrosstab = SortedCrosstab.sort_values('Absolute Support', ascending=False)
                 
                 SortedCrosstab = SortedCrosstab.reset_index(drop=True)
                 ResultDataFrame = SortedCrosstab.copy()
-                st.write("Processing Completed.")
-                    
-                st.dataframe(SortedCrosstab)
-                    
+                st.write("Analysis Completed ...")
+
+
+
+                #st.write("Styling your output to fit the container below")
+                #styled = SortedCrosstab.style.set_table_styles([dict(selector='th', props=[('text-align', 'center')])])
+                #st.dataframe(styled.set_properties(**{'text-align': 'center'}).hide_index())
+
                 st.write('### Step 4:')
                 st.write('#### Click the link below to download ' + filename)
-
+  
                 csv = ResultDataFrame.to_csv(index=False)
                 b64 = base64.b64encode(csv.encode()).decode()
                 download = f'<a href="data:file/csv;base64,{b64}" download={namee}>Download csv file</a>'
                 st.markdown(download,unsafe_allow_html=True)
                 
-
-
     else:    
         name = str(maxlength) + '-LFC patterns obtained from ' + uploadname
         filename = name
@@ -112,27 +103,24 @@ if uploaded_file is not None:
         with layout:
             st.write('### Step 3:')
             if st.button(label='Run LFCS'):
-                LFCSitems, LFCSitemsAppearances = explorer.i_lfcs(maxlength,startpos)
-                st.write("LFCS Analysis Completed!")
-                 
-
+                LFCSitems, LFCSitemsAppearances = explorer.lfcs(maxlength)
+                
+                st.write("Mining Completed! Processing unique patterns.")
         
                 # ### Secondary Operation
-                st.write("Processing the patterns into Data Frame of uniqe contiguous items.")
                 frame = pd.DataFrame(LFCSitems, columns = ['Patterns','SuperSequences','Absolute Support', 'Relative Support %'])
                 frame1 = pd.DataFrame(LFCSitemsAppearances, columns=['Patterns','SuperSequences','Appearance'])
                 frame['Appearance'] = frame1['Appearance'].copy()
-
                 arrangement  = frame['SuperSequences']
-
                 rearranged =[]
                 for app in arrangement:
                     converted = [item for t in app for item in t]
                     converted.sort()
                     rearranged.append(str(converted))
-
-
                 frame['SuperSequences'] = pd.DataFrame(rearranged,columns = ['Supersequences']) 
+               
+                #print last twenty uniqe consecutive items
+                st.write("Processing your Data Frame of uniqe contiguous items....")
                      
                 SortedCrosstab = frame.copy()
                         
@@ -140,20 +128,20 @@ if uploaded_file is not None:
                 
                 SortedCrosstab = SortedCrosstab.reset_index(drop=True)
                 ResultDataFrame = SortedCrosstab.copy()
-                st.write("Processing Completed.")
+                st.write("Analysis Completed ...")
 
-                st.dataframe(SortedCrosstab)
-                    
+
+
+                #st.write("Styling your output to fit the container below")
+                #styled = SortedCrosstab.style.set_table_styles([dict(selector='th', props=[('text-align', 'center')])])
+                #st.dataframe(styled.set_properties(**{'text-align': 'center'}).hide_index())
+
                 st.write('### Step 4:')
                 st.write('#### Click the link below to download ' + filename)
+
                 csv = ResultDataFrame.to_csv(index=False)
                 b64 = base64.b64encode(csv.encode()).decode()
                 download = f'<a href="data:file/csv;base64,{b64}" download={namee}>Download csv file</a>'
                 st.markdown(download,unsafe_allow_html=True)
-
 else:
     st.warning("Please upload your csv file")
-
-
-            
-
