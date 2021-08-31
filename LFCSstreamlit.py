@@ -52,9 +52,10 @@ if uploaded_file is not None:
             if st.button(label='Run LFCS'):
                 LFCSitems, LFCSitemsAppearances = explorer.i_lfcs(maxlength,startpos)
                 
-                st.write("Mining Completed! Processing unique patterns.")
+                st.write("LFCS Analysis Completed!")
         
                 # ### Secondary Operation
+                st.write("Processing outputted patterns.")
                 frame = pd.DataFrame(LFCSitems, columns = ['Patterns','SuperSequences','Absolute Support', 'Relative Support %'])
                 frame1 = pd.DataFrame(LFCSitemsAppearances, columns=['Patterns','SuperSequences','Appearance'])
                 frame['Appearance'] = frame1['Appearance'].copy()
@@ -66,9 +67,6 @@ if uploaded_file is not None:
                     converted.sort()
                     rearranged.append(str(converted))
                 frame['SuperSequences'] = pd.DataFrame(rearranged,columns = ['Supersequences']) 
-               
-                #print last twenty uniqe consecutive items
-                st.write("Processing your Data Frame of uniqe contiguous items....")
                      
                 SortedCrosstab = frame.copy()
                         
@@ -76,13 +74,9 @@ if uploaded_file is not None:
                 
                 SortedCrosstab = SortedCrosstab.reset_index(drop=True)
                 ResultDataFrame = SortedCrosstab.copy()
-                st.write("Analysis Completed ...")
+                st.write("Processing Completed.")
 
-
-
-                #st.write("Styling your output to fit the container below")
-                #styled = SortedCrosstab.style.set_table_styles([dict(selector='th', props=[('text-align', 'center')])])
-                #st.dataframe(styled.set_properties(**{'text-align': 'center'}).hide_index())
+                st.dataframe(SortedCrosstab)
 
                 st.write('### Step 4:')
                 st.write('#### Click the link below to download ' + filename)
@@ -105,9 +99,10 @@ if uploaded_file is not None:
             if st.button(label='Run LFCS'):
                 LFCSitems, LFCSitemsAppearances = explorer.lfcs(maxlength)
                 
-                st.write("Mining Completed! Processing unique patterns.")
+                st.write("LFCS Analysis Completed!")
         
                 # ### Secondary Operation
+                st.write("Processing outputted patterns")
                 frame = pd.DataFrame(LFCSitems, columns = ['Patterns','SuperSequences','Absolute Support', 'Relative Support %'])
                 frame1 = pd.DataFrame(LFCSitemsAppearances, columns=['Patterns','SuperSequences','Appearance'])
                 frame['Appearance'] = frame1['Appearance'].copy()
@@ -118,9 +113,6 @@ if uploaded_file is not None:
                     converted.sort()
                     rearranged.append(str(converted))
                 frame['SuperSequences'] = pd.DataFrame(rearranged,columns = ['Supersequences']) 
-               
-                #print last twenty uniqe consecutive items
-                st.write("Processing your Data Frame of uniqe contiguous items....")
                      
                 SortedCrosstab = frame.copy()
                         
@@ -128,13 +120,9 @@ if uploaded_file is not None:
                 
                 SortedCrosstab = SortedCrosstab.reset_index(drop=True)
                 ResultDataFrame = SortedCrosstab.copy()
-                st.write("Analysis Completed ...")
+                st.write("Processing Completed.")
 
-
-
-                #st.write("Styling your output to fit the container below")
-                #styled = SortedCrosstab.style.set_table_styles([dict(selector='th', props=[('text-align', 'center')])])
-                #st.dataframe(styled.set_properties(**{'text-align': 'center'}).hide_index())
+                st.dataframe(SortedCrosstab)
 
                 st.write('### Step 4:')
                 st.write('#### Click the link below to download ' + filename)
