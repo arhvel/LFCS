@@ -7,7 +7,9 @@ from LFCS import LFCS1P
 import streamlit as st
 import pandas as pd
 import base64
-from io import BytesIO
+
+from time import perf_counter
+
 ResultDataFrame = pd.DataFrame()
 filename = None
 st.write("""
@@ -45,14 +47,20 @@ if uploaded_file is not None:
         namee = str(maxlength) + '_'+str(startpos)+'-LFCS_' + uploadname
         
         ResultDataFrame = pd.DataFrame()
-        layout = st.expander('Generated Patterns Panel', expanded=True)
+        layout = st.beta_expander('Generated Patterns Panel', expanded=True)
             
         with layout:
             st.write('### Step 3:')
             if st.button(label='Run LFCS'):
+                begin = perf_counter()
                 LFCSitems, LFCSitemsAppearances = explorer.i_lfcs(maxlength,startpos)
-                
+                end = perf_counter()
                 st.write("LFCS Analysis Completed!")
+                duration = round(end - begin,3)
+                display = "Analysis completed in " + str(duration) + "secs."
+                st.write(display)
+                
+
         
                 # ### Secondary Operation
                 st.write("Processing outputted patterns.")
@@ -92,14 +100,18 @@ if uploaded_file is not None:
         namee = str(maxlength) + '-LFCS_' + uploadname
             
         ResultDataFrame = pd.DataFrame()
-        layout = st.expander('Generated Patterns Panel', expanded=True)
+        layout = st.beta_expander('Generated Patterns Panel', expanded=True)
         
         with layout:
             st.write('### Step 3:')
             if st.button(label='Run LFCS'):
+                begin = perf_counter()
                 LFCSitems, LFCSitemsAppearances = explorer.lfcs(maxlength)
-                
+                end = perf_counter()
                 st.write("LFCS Analysis Completed!")
+                duration = round(end - begin,3)
+                display = "Analysis completed in " + str(duration) + "secs."
+                st.write(display)
         
                 # ### Secondary Operation
                 st.write("Processing outputted patterns")
