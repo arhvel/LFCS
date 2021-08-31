@@ -93,13 +93,10 @@ if uploaded_file is not None:
                 ResultDataFrame = SortedCrosstab.copy()
                 st.write("Analysis Completed ...")
                     
-            
-                        
                 st.write("Styling your output to fit the container below")
-                st.markdown(  """<style>
-                                    .SortedCrosstab {text-align: left !important}
-                               </style>
-                               """, unsafe_allow_html=True)
+                #styled = SortedCrosstab.style.set_table_styles([dict(selector='th', props=[('text-align', 'center')])])
+                #st.dataframe(styled.set_properties(**{'text-align': 'center'}).hide_index())
+                st.plotly_chart(SortedCrosstab)
                     
                 st.write('### Step 4:')
                 st.write('#### Click the link below to download ' + filename)
@@ -154,14 +151,10 @@ if uploaded_file is not None:
                 ResultDataFrame = SortedCrosstab.copy()
                 st.write("Analysis Completed ...")
                     
-            
-                        
                 st.write("Styling your output to fit the container below")
-                st.markdown(  """<style>
-                                    .SortedCrosstab {text-align: left !important}
-                               </style>
-                               """, unsafe_allow_html=True)
-                #st.dataframe(SortedCrosstab(**{'text-align': 'center'}).hide_index())
+                #styled = SortedCrosstab.style.set_table_styles([dict(selector='th', props=[('text-align', 'center')])])
+                #st.dataframe(styled.set_properties(**{'text-align': 'center'}).hide_index())
+                st.plotly_chart(SortedCrosstab)
                     
                 st.write('### Step 4:')
                 st.write('#### Click the link below to download ' + filename)
