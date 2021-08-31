@@ -62,13 +62,13 @@ if uploaded_file is not None:
         with layout:
             st.write('### Step 3:')
             if st.button(label='Run LFCS'):
-                timer_start = perf_counter()
+                #timer_start = perf_counter()
                 LFCSitems, LFCSitemsAppearances = explorer.i_lfcs(maxlength,startpos)
-                timer_end = perf_counter()
+                #timer_end = perf_counter()
                 st.write("LFCS Analysis Completed!")
-                timer = timer_end - timer_start
-                timer_display = "Analysis Duration: " + str(timer) + "secs."
-                st.write(timer_display)                     
+                #timer = timer_end - timer_start
+                #timer_display = "Analysis Duration: " + str(timer) + "secs."
+                #st.write(timer_display)                     
 
         
                 # ### Secondary Operation
@@ -119,13 +119,13 @@ if uploaded_file is not None:
         with layout:
             st.write('### Step 3:')
             if st.button(label='Run LFCS'):
-                timer_start = perf_counter()
+                #timer_start = perf_counter()
                 LFCSitems, LFCSitemsAppearances = explorer.i_lfcs(maxlength,startpos)
-                timer_end = perf_counter()
+                #timer_end = perf_counter()
                 st.write("LFCS Analysis Completed!")
-                timer = timer_end - timer_start
-                timer_display = "Analysis Duration: " + str(timer) + "secs."
-                st.write(timer_display)                     
+                #timer = timer_end - timer_start
+                #timer_display = "Analysis Duration: " + str(timer) + "secs."
+                #st.write(timer_display)                     
 
         
                 # ### Secondary Operation
