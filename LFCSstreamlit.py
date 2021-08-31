@@ -94,8 +94,8 @@ if uploaded_file is not None:
                 st.write("Analysis Completed ...")
                     
                 st.write("Styling your output to fit the container below")
-                #styled = SortedCrosstab.style.set_table_styles([dict(selector='th', props=[('text-align', 'center')])])
-                st.dataframe(SortedCrosstab.set_properties(**{'text-align': 'center'}).hide_index())
+                styled = SortedCrosstab.style.set_properties(**{'text-align': 'center'}).hide_index()
+                st.dataframe(styled)
                     
                 st.write('### Step 4:')
                 st.write('#### Click the link below to download ' + filename)
@@ -151,8 +151,8 @@ if uploaded_file is not None:
                 st.write("Analysis Completed ...")
                     
                 st.write("Styling your output to fit the container below")
-                #styled = SortedCrosstab.style.set_table_styles([dict(selector='th', props=[('text-align', 'center')])])
-                st.dataframe(SortedCrosstab.set_properties(**{'text-align': 'center'}).hide_index())
+                styled = SortedCrosstab.style.set_properties(**{'text-align': 'center'}).hide_index()
+                st.dataframe(styled)
                     
                 st.write('### Step 4:')
                 st.write('#### Click the link below to download ' + filename)
