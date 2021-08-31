@@ -10,7 +10,6 @@ from LFCS import LFCS1P
 import streamlit as st
 import pandas as pd
 import base64
-#from time import perf_counter
 
 from io import BytesIO
 
@@ -62,15 +61,9 @@ if uploaded_file is not None:
         with layout:
             st.write('### Step 3:')
             if st.button(label='Run LFCS'):
-                #timer_start = perf_counter()
                 LFCSitems, LFCSitemsAppearances = explorer.i_lfcs(maxlength,startpos)
-                #timer_end = perf_counter()
                 st.write("LFCS Analysis Completed!")
-                #timer = timer_end - timer_start
-                #timer_display = "Analysis Duration: " + str(timer) + "secs."
-                #st.write(timer_display)                     
-
-        
+                  
                 # ### Secondary Operation
                 st.write("Processing the patterns into Data Frame of uniqe contiguous items.")
                 frame = pd.DataFrame(LFCSitems, columns = ['Patterns','SuperSequences','Absolute Support', 'Relative Support %'])
@@ -119,13 +112,9 @@ if uploaded_file is not None:
         with layout:
             st.write('### Step 3:')
             if st.button(label='Run LFCS'):
-                #timer_start = perf_counter()
                 LFCSitems, LFCSitemsAppearances = explorer.i_lfcs(maxlength,startpos)
-                #timer_end = perf_counter()
                 st.write("LFCS Analysis Completed!")
-                #timer = timer_end - timer_start
-                #timer_display = "Analysis Duration: " + str(timer) + "secs."
-                #st.write(timer_display)                     
+                 
 
         
                 # ### Secondary Operation
