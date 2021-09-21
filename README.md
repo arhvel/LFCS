@@ -1,5 +1,5 @@
 # LFCS
-         This is the l-Length Contiguous Frequent Subsequence (i.e., LCFS) Explorer.          
+         This is the l-Length Frequent Contiguous Subsequence (i.e., LFCS) Explorer.          
          It mines and output a user-defined length of contiguous patterns from a sequential database.          
          It is a vertical pattern mining algorithm (i.e. one single pass of the database).
          This data mining explorer  avails:          
