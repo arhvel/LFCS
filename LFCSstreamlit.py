@@ -14,7 +14,7 @@ ResultDataFrame = pd.DataFrame()
 filename = None
 st.write("""
          
-         # This is the l-Length Contiguous Frequent Subsequence (i.e., LCFS) Explorer.
+         # This is the l-Length Frequent Contiguous Subsequence (i.e., LFCS) Explorer.
          ## It mines and output a user-defined length of contiguous patterns.
          ### This data mining explorer  avails:
          1. Provision of unique patterns repetitive frequencies.
