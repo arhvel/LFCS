@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Aug 25 16:56:58 2021
-
 @author: adeyem01
 """
 
@@ -42,10 +41,17 @@ class LFCS1P:
         
         self.minedpool = []       
         
+
         for i in range(len(self.sequenceDB)):
-            self.subpattern = self.sequenceDB[i][i:self.userlen+i]
-            self.subIdx = (self.subpattern,i+1)
-            self.minedpool.append(self.subIdx)
+            start = 0
+            end = self.userlen
+                
+            while (end <= len(self.sequenceDB[i])):
+                self.subpattern = (self.sequenceDB[i][start:end])
+                self.subIdx = (self.subpattern,i+1)
+                self.minedpool.append(self.subIdx)
+                start = start + 1
+                end = end + 1
         
         self.appearance = []
         self.pool = sorted(self.minedpool, key=operator.itemgetter(0))
@@ -84,10 +90,17 @@ class LFCS1P:
         
         self.minedpool = []       
         
+
         for i in range(len(self.sequenceDB)):
-            self.subpattern = self.sequenceDB[i][self.start+i : self.userlen+self.start+i]
-            self.subIdx = (self.subpattern,i+1)
-            self.minedpool.append(self.subIdx)
+            start = startpos
+            end = self.userlen + startpos
+                
+            while (end <= len(self.sequenceDB[i])):
+                self.subpattern = (self.sequenceDB[i][start:end])
+                self.subIdx = (self.subpattern,i+1)
+                self.minedpool.append(self.subIdx)
+                start = start + 1
+                end = end + 1
         
         self.appearance = []
         self.pool = sorted(self.minedpool, key=operator.itemgetter(0))
@@ -120,7 +133,3 @@ class LFCS1P:
 
         
         return self.resList, self.appear
-
-    
-    
-    
